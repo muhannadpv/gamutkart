@@ -7,9 +7,15 @@ pipeline {
 	        	checkout scm
 	    	}
         }
-	 stage ('Build'){
+	stage('Build') {
+		steps {
+			sh 'mvn install'
+		}
+	}	
+ 
+	stage ('Compile'){
 	        steps {
-			sh 'mvn clean install'
+			sh 'mvn clean compile'
                 }
 	}
 
@@ -26,13 +32,8 @@ pipeline {
         }
 	stage('Deployment') {
 	   steps {
-		sh 'sshpass -p "staragile" scp target/gamutkart.war staragile@172.31.39.226:/home/staragile/apache-tomcat-9.0.85/webapps/'
-		   
-		   sh "sshpass -p "staragile" ssh staragile@172.31.39.226 "//home/staragile/apache-tomcat-9.0.87/bin/startup.sh"'
-	   }
-
+		sh 'sshpass -p staragile scp target/gamutkart.war staragile@172.31.44.167:/home/staragile/apache-tomcat-9.0.85/webapps/'
 	}
     }
 }
-
-
+}

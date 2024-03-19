@@ -26,7 +26,7 @@ pipeline {
         }
 	stage('Deployment') {
 	   steps {
-		sh 'sshpass -p muhannad scp target/gamutkart.war muhannad@172.31.84.2:/home/muhannad/apache-tomcat-9.0.85/webapps/'
+		sh 'sshpass -p staragile scp target/gamutkart.war staragile@172.31.39.226:/home/staragile/apache-tomcat-9.0.85/webapps/'
 	}
     }
 }
